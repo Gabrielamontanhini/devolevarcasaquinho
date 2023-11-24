@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const StyledMain = styled.main`
     display: flex;
-    height: 100%;
+    height: 100vh;
 `
 
 export const CurrentWeather = styled.section`
