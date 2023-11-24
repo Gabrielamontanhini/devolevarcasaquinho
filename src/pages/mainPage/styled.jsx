@@ -3,6 +3,7 @@ import { colors } from "../../constants/colors/colors";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
+
 export const StyledMain = styled.main`
     display: flex;
     height: 100%;
@@ -14,6 +15,7 @@ export const CurrentWeather = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+
     flex: 1;
     header{
         display: flex;
@@ -30,7 +32,7 @@ export const CurrentWeather = styled.section`
         width: 80%;
         height: 80px;
         border-radius: 15px;
-        background-color: #EDEDEF;
+       background-color: #EDEDEF;
         display: flex;
         align-items: center;
         input{
@@ -38,7 +40,7 @@ export const CurrentWeather = styled.section`
         height: 80px;
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
-        background-color: #EDEDEF;
+       background-color: #EDEDEF;
         border: none;
     }
     input:focus{
@@ -56,14 +58,14 @@ export const CurrentWeather = styled.section`
         font-size: 400;
         margin: 15px;
     }
-    
+    background-color: ${(props) => (props.mode === "darkmode" ? "LightSlateGrey" : (colors.lightModeLightBackground))};;
 `
 
 export const WeatherDetails = styled.section`
     height: 100%;
     flex: 2;
     padding-left: 2%;
-    background-color: ${colors.lightModeDarkBackground};
+    background-color: ${(props) => (props.mode === "darkmode" ? "grey" : (colors.lightModeDarkBackground))};;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

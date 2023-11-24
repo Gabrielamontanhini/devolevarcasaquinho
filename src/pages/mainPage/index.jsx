@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react"
-import styled from "styled-components"
+import { useContext, useEffect, useState } from "react"
 import CatWithCoat from "../../assets/cat.webp"
+import DarkCatWithCoat from "../../assets/gato-casaco.png"
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import CardComponent from "../../components/cardComponent";
 import GraficoComponent from "../../components/graficoComponent";
 import { fetchDataByCityName, fetchDataByLatAndLong, fetchSevenDaysData } from "../../services/WeatherServices";
-import { colors } from "../../constants/colors/colors";
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { CurrentWeather, DadosDeHoje, DataEHora, Hoje, IconeEstilizado, LinhaDivisoria, StyledMain, TempAndImage, TemperatureAndWeather, WeatherDetails } from "./styled";
+import ModeContext from "../../contexts/modeContext";
 
 
 export default function MainPage() {
-    const [darkMode, setDarkMode] = useState(false)
+    const {setModeAndPersist} = useContext(ModeContext)
+    const {mode}=useContext(ModeContext)
     const [nextDays, setNextDays] = useState([])
     const [unit, setUnit] = useState("ºC")
     const [searchCity, setSearchCity] = useState()
     const [displayData, setDisplayData] = useState("Hoje")
+    const [darkCat, setDarkCat]=useState(CatWithCoat)
     const [textColor, setTextColor]=useState("#C71585")
     const [details, setDetails] = useState({
         cidade: '',
@@ -37,6 +39,11 @@ export default function MainPage() {
         navigator.geolocation.getCurrentPosition(
             (position) => {fetchDataByLatAndLong(position.coords.latitude, position.coords.longitude, setDetails, unit, setTextColor)},
             (error) => {console.error('Erro ao pegar geolocalização:', error.message);});
+        if (mode === "darkmode"){
+            setDarkCat(DarkCatWithCoat)
+        } else if (mode === "lightmode"){
+            setDarkCat(CatWithCoat)
+        }
     }, []);
 
 
@@ -58,8 +65,15 @@ export default function MainPage() {
 
 
     function switchMode() {
-        setDarkMode(!darkMode)
-        console.log("oi?")
+        if (mode === "darkmode"){
+            setModeAndPersist("lightmode")
+            setDarkCat(CatWithCoat)         
+        } else {
+            setModeAndPersist("darkmode")
+            setDarkCat(DarkCatWithCoat)  
+
+        }
+        
     }
 
 function unitsChange(){
@@ -74,10 +88,10 @@ function unitsChange(){
 
     return (
         <StyledMain>
-            <CurrentWeather>
+            <CurrentWeather mode={mode}>
                 <header>
-                    <img src={CatWithCoat} alt="cat" />
-                    <h1 >Devo levar um casaquinho?</h1>
+                    <img src={darkCat} alt="cat" />
+                    <h1 >{mode}</h1>
                 </header>
                 <fieldset>
                     <IconeEstilizado icon={faSearch} onClick={handleSearch} />
@@ -101,14 +115,14 @@ function unitsChange(){
                     <p>Quinta-feira, 16:32</p>
                 </DataEHora>
                 <FormGroup>
-                    <FormControlLabel control={<Switch onClick={unitsChange}/>} label="Fº"  />
-                    <FormControlLabel control={<Switch />} label="DarkMode" style={{ fontSize: '24px' }}/>
+                    <FormControlLabel control={<Switch onClick={unitsChange} />} label="Fº"  />
+                    <FormControlLabel control={<Switch onClick={switchMode} checked={mode === "darkmode"}/>} label="DarkMode" style={{ fontSize: '24px' }}/>
                 </FormGroup>
                 <footer>
                     <p>Nenhum direito reservado. 2023</p>
                 </footer>
             </CurrentWeather>
-            <WeatherDetails>
+            <WeatherDetails mode={mode}>
                 <menu>
                     <li onClick={handleDisplayData}>Hoje</li>
                     <li onClick={handleDisplayData}>Próximos Dias</li>
@@ -122,11 +136,11 @@ function unitsChange(){
                     <DadosDeHoje>
                         <CardComponent
                             nome="Mínima"
-                            dado={details.minima}
+                            dado={`${details.minima} ${unit}`}
                         />
                         <CardComponent
                             nome="Máxima"
-                            dado={details.maxima}
+                            dado={`${details.maxima} ${unit}`}
                         />
                         <CardComponent
                             nome="Umidade"
@@ -134,7 +148,7 @@ function unitsChange(){
                         />
                         <CardComponent
                             nome="Velocidade do vento"
-                            dado={details.vento}
+                            dado={`${details.vento} ${unit === "ºC"?"m/s":"mph"}`}
                         />
                     </DadosDeHoje>
 

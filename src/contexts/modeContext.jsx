@@ -1,13 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext} from "react";
 
-export const ModeContext = createContext()
+const ModeContext = createContext();
 
-export default function ModeProvider({ children }) {
-const lsMode = JSON.parse(localStorage.getItem("mode"))
-    const [mode, setMode] = useState(lsMode)
-    return (
-        <ModeContext.Provider value={{ mode, setMode }}>
-            {children}
-        </ModeContext.Provider>
-    )
-}
+export default ModeContext;
