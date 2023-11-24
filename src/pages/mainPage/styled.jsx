@@ -60,7 +60,7 @@ export const CurrentWeather = styled.section`
         font-size: 400;
         margin: 15px;
     }
-    background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeLightBackground) : (colors.lightModeLightBackground))};;
+    background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeLightBackground) : (colors.lightModeLightBackground))};
 `
 
 export const WeatherDetails = styled.section`
@@ -101,8 +101,19 @@ export const TemperatureAndWeather = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+   
     h2, h3{
-        color: ${(props) => props.textColor}
+        color: ${(props) => props.textColor};
+        text-shadow:
+        ${(props) => (props.mode === "darkmode" ? (  `0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 2px #fff,
+    0 0 4px #ffffff,
+    0 0 8px #ffffff,
+    0 0 9px #ffffff,
+    0 0 10px #ffffff,
+    0 0 15px #9b9b9b;` ) : ("none"))};;
+  
     }
 `
 
@@ -114,17 +125,7 @@ export const TempAndImage = styled.div`
     img{
         width: 150px;
     }
-    h2{
-        text-shadow:
-    0 0 7px #fff,
-    0 0 10px #fff,
-    0 0 2px #fff,
-    0 0 4px #ffffff,
-    0 0 8px #ffffff,
-    0 0 9px #ffffff,
-    0 0 10px #ffffff,
-    0 0 15px #9b9b9b;
-    }
+   
 `
 
 export const IconeEstilizado = styled(FontAwesomeIcon)`
