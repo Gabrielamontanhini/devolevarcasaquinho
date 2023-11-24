@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { fetchSevenDaysData } from '../../services/WeatherServices';
 
 
-export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cidade }) {
+export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cidade , unit}) {
     const [weatherData, setWeatherData] = useState()
     const [parametro, setParametro] = useState()
 
@@ -22,11 +22,11 @@ export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cida
         console.log(lat, lon)
         if (nextDays.length === 0) {
             console.log("ta vazio")
-            fetchSevenDaysData(lat, lon, setNextDays)
+            fetchSevenDaysData(lat, lon, setNextDays, unit)
             setParametro(cidade)
         }
 
-    }, [parametro])
+    }, [unit])
 
     function verificarDados() {
         console.log(teste)

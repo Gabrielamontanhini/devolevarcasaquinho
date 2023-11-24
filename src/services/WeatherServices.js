@@ -4,9 +4,8 @@ const apiKey = import.meta.env.VITE_APIKEY;
 
 const url = "https://api.openweathermap.org/data/2.5"
 
-export function fetchDataByLatAndLong(lat, long, setDetails) {
-
-    const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric&lang=pt_br`)
+export function fetchDataByLatAndLong(lat, long, setDetails, unit) {
+    const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unit==="ºC"?"metric":"imperial"}&lang=pt_br`)
     response.then((res) => {
 
         setDetails({
@@ -28,8 +27,8 @@ export function fetchDataByLatAndLong(lat, long, setDetails) {
 }
 
 
-export function fetchDataByCityName(searchCity, setDetails) {
-    const response = axios.get(`${url}/weather?q=${searchCity}&lang=pt_br&appid=${apiKey}&units=metric`)
+export function fetchDataByCityName(searchCity, setDetails, unit) {
+    const response = axios.get(`${url}/weather?q=${searchCity}&lang=pt_br&appid=${apiKey}&units=${unit==="ºC"?"metric":"imperial"}`)
     response.then((res) => {
         console.log(res.data)
         setDetails({
@@ -47,8 +46,8 @@ export function fetchDataByCityName(searchCity, setDetails) {
     })
 }
 
-export function fetchSevenDaysData(lat, lon, setNextDays) {
-    const response = axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`)
+export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
+    const response = axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit==="ºC"?"metric":"imperial"}&lang=pt_br`)
     
     response.then((res) => {
    
