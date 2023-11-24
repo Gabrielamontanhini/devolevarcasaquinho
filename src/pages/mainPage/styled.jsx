@@ -149,7 +149,6 @@ export const DadosDeHoje = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap ;
-    background-color: azure;
     align-items: center;
     justify-content: space-around;
 
