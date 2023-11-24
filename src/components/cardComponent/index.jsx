@@ -12,7 +12,6 @@ export default function CardComponent({ nome, dado }) {
 
 const CardEstilizado = styled.div`
      flex: 1 0 45%; 
-     //width: 500px;
      margin: 10px;
     height: 180px;
     background-color: DarkMagenta;
@@ -33,5 +32,17 @@ font-size: 24px;
     .dado{
         font-size: 48px;
     }
+
+    @media (max-width: 1000px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p{
+            font-size: 18px;
+        }
+        .dado{
+        font-size: 28px;
+    }
+  }
 
 `

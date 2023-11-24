@@ -6,7 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const StyledMain = styled.main`
     display: flex;
-    height: 100vh;
+height: 100%;
+    @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 `
 
 export const CurrentWeather = styled.section`
@@ -27,14 +30,13 @@ export const CurrentWeather = styled.section`
     h1{
        font-size: 55px;
        font-weight: 600;
-       color: black;
-  
+       color: ${(props) => (props.mode === "darkmode" ? "white" : "black")};
     }
     fieldset{
         width: 80%;
         height: 80px;
         border-radius: 15px;
-       background-color: #EDEDEF;
+        background-color: ${(props) => (props.mode === "darkmode" ? (colors.lightModeDarkBackground) : "#EDEDEF")};
         display: flex;
         align-items: center;
         input{
@@ -42,7 +44,7 @@ export const CurrentWeather = styled.section`
         height: 80px;
         border-top-right-radius: 15px;
         border-bottom-right-radius: 15px;
-       background-color: #EDEDEF;
+       background-color: transparent;
         border: none;
     }
     input:focus{
@@ -53,6 +55,7 @@ export const CurrentWeather = styled.section`
     h2{
         font-size: 140px;
         font-weight: 300;
+
         
     }
     h3{
@@ -60,7 +63,56 @@ export const CurrentWeather = styled.section`
         font-size: 400;
         margin: 15px;
     }
+  p{
+    text-shadow:
+        ${(props) => (props.mode === "darkmode" ? (  `0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 2px #fff,
+    0 0 4px #ffffff,
+    0 0 8px #ffffff,
+    0 0 9px #ffffff,
+    0 0 10px #ffffff,
+    0 0 15px #9b9b9b;` ) : ("none"))};;
+  }
+  footer{
+    p{
+        text-shadow: none;
+        color:${(props) => (props.mode === "darkmode" ? "white" : "black")};
+    }
+  }
     background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeLightBackground) : (colors.lightModeLightBackground))};
+
+    @media (max-width: 1100px) {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    flex: 0;
+    header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    h1{
+        font-size: 44px;
+    }
+    h2{
+        font-size: 40px;
+    }
+    h3{
+        font-size: 30px;
+    }
+    p{
+        font-size: 18px;
+    }
+    fieldset{
+        height: 60px;
+        input{
+        height: 60px;
+    }
+    }
+    
+  }
 `
 
 export const WeatherDetails = styled.section`
@@ -88,12 +140,45 @@ export const WeatherDetails = styled.section`
     p{
         font-size: 24px;
     }
+    p, h1, li{
+        color: ${(props) => (props.mode === "darkmode" ? "white" : "black")};
+    }
+    @media (max-width: 1100px) {
+    padding: 15px;
+    menu{
+        width: 90%;
+        align-self: center;
+    }
+    li{
+        font-size: 28px;
+    }
+    header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1{
+        font-size: 60px;
+    }
+    p{
+        font-size: 20px;
+    }
+    footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+  }
 `
 
 
 export const LinhaDivisoria = styled.div`
     width: 80%;
     border-top: 1px solid #ccc;
+    @media (max-width: 1100px) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 `;
 
 export const TemperatureAndWeather = styled.div`
@@ -138,30 +223,40 @@ export const IconeEstilizado = styled(FontAwesomeIcon)`
 export const Hoje = styled.div`
     width: 80%;
     height: 60%;
-
+    @media (max-width: 1000px) {
+        height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: space-around;
+    p{
+        text-align: center;
+      
+    }
+  }
 `
 
 
 export const DadosDeHoje = styled.div`
     width: 100%;
     height: 80%;
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap ;
     align-items: center;
     justify-content: space-around;
+    @media (max-width: 1000px) {
+        margin-bottom: 25px;
+    }
 
 `
 export const SwitchButtons = styled.div`
     width: 80%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     div{
-        height: 60px;
-        
+        height: 60px;    
         width: 180px;
         display: flex;
         justify-content: flex-start;
@@ -169,18 +264,29 @@ export const SwitchButtons = styled.div`
         label{
             margin-left: 10px;
             font-size: 24px;
-       
         }
     }
-
 `
 
 export const DataEHora = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+
     p{
         font-size: 24px;
+        
+        color:
+        ${(props) => (props.mode === "darkmode" ? "white" : "black")};
+        text-shadow: none;
+    }
+    
+
+
+    @media (max-width: 1100px) {
+        p{
+            font-size: 18px; 
+        }
     }
 
 `

@@ -27,10 +27,10 @@ function App() {
 }
 
 const StyledApp = styled.div`
-  width: 100dvw;
+  width: 100vw;
   height: 100dvh;
- // background-color: ${colors.lightModeLightBackground};
-
+ 
+  
 `
 
 export default App

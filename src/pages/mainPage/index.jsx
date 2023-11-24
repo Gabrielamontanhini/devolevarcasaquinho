@@ -111,7 +111,7 @@ function unitsChange(){
                     <h3>    {details.descrição}</h3>
                 </TemperatureAndWeather>
                 <LinhaDivisoria />
-                <DataEHora>
+                <DataEHora mode={mode}>
                     <p>16/11/2023</p>
                     <p>Quinta-feira, 16:32</p>
                 </DataEHora>
