@@ -4,33 +4,33 @@ import styled from 'styled-components';
 import { fetchSevenDaysData } from '../../services/WeatherServices';
 
 
-export default function GraficoComponent({ lat, lon , nextDays , setNextDays, cidade}) {
-    const [weatherData, setWeatherData]=useState()
-    const [parametro, setParametro]=useState()
-    
-    const data =[{ name: "A", value: 200 },
-     { name: "B", value: 300 }, { name: "C", value: 100 },
-      { name: "D", value: 200 }, { name: "E", value: 200 },
-       { name: "F", value: 300 }, { name: "G", value: 100 },
-        { name: "H", value: 1000 }]
+export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cidade }) {
+    const [weatherData, setWeatherData] = useState()
+    const [parametro, setParametro] = useState()
 
-        
-const [teste, setTeste]=useState(nextDays)
+    const data = [{ name: "A", value: 200 },
+    { name: "B", value: 300 }, { name: "C", value: 100 },
+    { name: "D", value: 200 }, { name: "E", value: 200 },
+    { name: "F", value: 300 }, { name: "G", value: 100 },
+    { name: "H", value: 1000 }]
+
+
+    const [teste, setTeste] = useState(nextDays)
 
 
     useEffect(() => {
         console.log(lat, lon)
-       if (nextDays.length === 0){
-console.log("ta vazio")  
-fetchSevenDaysData(latitude, longitude, setNextDays)
-setParametro(cidade)
-}
-        
+        if (nextDays.length === 0) {
+            console.log("ta vazio")
+            fetchSevenDaysData(lat, lon, setNextDays)
+            setParametro(cidade)
+        }
+
     }, [parametro])
 
-function verificarDados(){
-    console.log(teste)
-}
+    function verificarDados() {
+        console.log(teste)
+    }
 
     return (
         <Gráfico onClick={verificarDados}>

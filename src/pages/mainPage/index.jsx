@@ -6,9 +6,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import CardComponent from "../../components/cardComponent";
 import GraficoComponent from "../../components/graficoComponent";
 import { fetchDataByCityName, fetchDataByLatAndLong, fetchSevenDaysData } from "../../services/WeatherServices";
+import { colors } from "../../constants/colors/colors";
+import { Switch } from "@mui/material";
 
 
 export default function MainPage() {
+    const [darkMode, setDarkMode]=useState(false)
     const [nextDays, setNextDays]=useState([])
     const [unit, setUnit] = useState("ºC")
     const [searchCity, setSearchCity] = useState()
@@ -62,7 +65,10 @@ export default function MainPage() {
     }
 
 
-
+function switchMode(){
+    setDarkMode(!darkMode)
+    console.log("oi?")
+}
 
 
     return (
@@ -95,13 +101,14 @@ export default function MainPage() {
                 </DataEHora>
                 <SwitchButtons>
                     <div>
-                        <input type="checkbox" id="fahrenheit" />
+                    <Switch  />
                         <label htmlFor="fahrenheit">Fº</label>
                     </div>
 
-                    <div>
-                        <input type="checkbox" id="darkMode" />
-                        <label for="darkMode">Dark Mode</label>
+                    <div >
+                    <Switch  />
+                        <label for="darkMode">Dark Mode </label>
+                        
                     </div>
 
 
@@ -218,7 +225,7 @@ const WeatherDetails = styled.section`
     height: 100%;
     flex: 2;
     padding-left: 2%;
-    background-color: #D8D8D8;
+    background-color: ${colors.lightModeDarkBackground};
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -311,6 +318,9 @@ const SwitchButtons = styled.div`
 `
 
 const DataEHora = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
     p{
         font-size: 24px;
     }
