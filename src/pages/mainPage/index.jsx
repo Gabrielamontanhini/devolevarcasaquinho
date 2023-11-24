@@ -16,12 +16,16 @@ export default function MainPage() {
     const [nextDays, setNextDays] = useState([])
     const [unit, setUnit] = useState("ºC")
     const [searchCity, setSearchCity] = useState()
+    const [displayData, setDisplayData] = useState("Hoje")
+    const [textColor, setTextColor]=useState("#C71585")
     const [details, setDetails] = useState({
         cidade: '',
         latitude: '',
         longitude: '',
         temperaturaAtual: '',
         descrição: '',
+        idWeather: '',
+        icon:'',
         minima: '',
         maxima: '',
         umidade: '',
@@ -29,26 +33,15 @@ export default function MainPage() {
     })
 
 
-    const [displayData, setDisplayData] = useState("Hoje")
-
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
-                fetchDataByLatAndLong(position.coords.latitude, position.coords.longitude, setDetails, unit)
-            },
-            (error) => {
-                console.error('Erro ao pegar geolocalização:', error.message);
-            }
-        )
-
-            ;
-
+            (position) => {fetchDataByLatAndLong(position.coords.latitude, position.coords.longitude, setDetails, unit, setTextColor)},
+            (error) => {console.error('Erro ao pegar geolocalização:', error.message);});
     }, []);
 
 
-
     function handleSearch() {
-        fetchDataByCityName(searchCity, setDetails, unit)
+        fetchDataByCityName(searchCity, setDetails, unit, setTextColor)
         setSearchCity('')
     }
 
@@ -56,13 +49,11 @@ export default function MainPage() {
 
     function handleDisplayData() {
         if (displayData === "Hoje") {
-
             fetchSevenDaysData(details.latitude, details.longitude, setNextDays, unit)
             setDisplayData("proximos")
         } else {
             setDisplayData("Hoje")
         }
-
     }
 
 
@@ -73,15 +64,12 @@ export default function MainPage() {
 
 function unitsChange(){
     if (unit === "ºC"){
-     
-        setUnit("Fº")
-        fetchDataByLatAndLong(details.latitude, details.longitude, setDetails, "Fº")
-        console.log(unit)
+        setUnit("ºF")
+        fetchDataByLatAndLong(details.latitude, details.longitude, setDetails, "ºF")
     } else {
         setUnit("ºC")
         fetchDataByLatAndLong(details.latitude, details.longitude, setDetails, "ºC")
     }
-    console.log(unit)
 }
 
     return (
@@ -100,9 +88,9 @@ function unitsChange(){
                         onChange={(e) => setSearchCity(e.target.value)}
                     />
                 </fieldset>
-                <TemperatureAndWeather>
+                <TemperatureAndWeather textColor={textColor}>
                     <TempAndImage>
-                        <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="current-weather" />
+                        <img src={`https://openweathermap.org/img/wn/${details.icon}@2x.png`}  alt="current-weather" />
                         <h2>{details.temperaturaAtual}{unit}</h2>
                     </TempAndImage>
                     <h3>    {details.descrição}</h3>
@@ -151,7 +139,7 @@ function unitsChange(){
                     </DadosDeHoje>
 
 
-                    <p>{(details.maxima < 20) ? "Sim, é bom levar um casaquinho!" : "Não, por favor, eu imploro, nenhum casaquinho!"} </p>
+                    <p>{(details.minima > 25 && unit === "ºC") || (details.minima > 77 && unit === "Fº") ? "Não, não precisa de casaqunho!" : "Sim! É uma boa ideia levar um casaquinho!"}</p>
                 </Hoje>
                 ) : (
                     <GraficoComponent

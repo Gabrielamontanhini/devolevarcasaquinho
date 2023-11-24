@@ -21,7 +21,7 @@ const CardEstilizado = styled.div`
     justify-content: center;
     padding-left: 5%;
     p, h1{
-        color: white !important;
+        color: white;
         font-weight: 500;
         font-family: Poppins;
     }

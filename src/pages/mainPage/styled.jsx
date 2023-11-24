@@ -97,6 +97,9 @@ export const TemperatureAndWeather = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    h2, h3{
+        color: ${(props) => props.textColor}
+    }
 `
 
 export const TempAndImage = styled.div`
