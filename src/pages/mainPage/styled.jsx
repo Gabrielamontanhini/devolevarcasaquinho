@@ -147,7 +147,8 @@ export const DadosDeHoje = styled.div`
     height: 80%;
 
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap ;
+    background-color: azure;
     align-items: center;
     justify-content: space-around;
 
