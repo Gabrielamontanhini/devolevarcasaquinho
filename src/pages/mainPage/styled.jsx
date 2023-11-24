@@ -27,6 +27,8 @@ export const CurrentWeather = styled.section`
     h1{
        font-size: 55px;
        font-weight: 600;
+       color: black;
+  
     }
     fieldset{
         width: 80%;
@@ -51,21 +53,21 @@ export const CurrentWeather = styled.section`
     h2{
         font-size: 140px;
         font-weight: 300;
-        color: #EC6E4C; //ira mudar
+        
     }
     h3{
         font-size: 32px;
         font-size: 400;
         margin: 15px;
     }
-    background-color: ${(props) => (props.mode === "darkmode" ? "LightSlateGrey" : (colors.lightModeLightBackground))};;
+    background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeLightBackground) : (colors.lightModeLightBackground))};;
 `
 
 export const WeatherDetails = styled.section`
     height: 100%;
     flex: 2;
     padding-left: 2%;
-    background-color: ${(props) => (props.mode === "darkmode" ? "grey" : (colors.lightModeDarkBackground))};;
+    background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeDarkBackground) : (colors.lightModeDarkBackground))};;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -111,6 +113,17 @@ export const TempAndImage = styled.div`
     justify-content: space-between;
     img{
         width: 150px;
+    }
+    h2{
+        text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 2px #fff,
+    0 0 4px #ffffff,
+    0 0 8px #ffffff,
+    0 0 9px #ffffff,
+    0 0 10px #ffffff,
+    0 0 15px #9b9b9b;
     }
 `
 

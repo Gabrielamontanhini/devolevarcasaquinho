@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import CatWithCoat from "../../assets/cat.webp"
 import DarkCatWithCoat from "../../assets/gato-casaco.png"
+import catTeste from "../../assets/cutecat.webp"
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import CardComponent from "../../components/cardComponent";
@@ -42,7 +43,7 @@ export default function MainPage() {
         if (mode === "darkmode"){
             setDarkCat(DarkCatWithCoat)
         } else if (mode === "lightmode"){
-            setDarkCat(CatWithCoat)
+            setDarkCat(catTeste)
         }
     }, []);
 
@@ -67,7 +68,7 @@ export default function MainPage() {
     function switchMode() {
         if (mode === "darkmode"){
             setModeAndPersist("lightmode")
-            setDarkCat(CatWithCoat)         
+            setDarkCat(catTeste)         
         } else {
             setModeAndPersist("darkmode")
             setDarkCat(DarkCatWithCoat)  
@@ -91,7 +92,7 @@ function unitsChange(){
             <CurrentWeather mode={mode}>
                 <header>
                     <img src={darkCat} alt="cat" />
-                    <h1 >{mode}</h1>
+                    <h1 >Devo levar um casaquinho?</h1>
                 </header>
                 <fieldset>
                     <IconeEstilizado icon={faSearch} onClick={handleSearch} />

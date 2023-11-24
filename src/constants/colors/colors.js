@@ -2,8 +2,8 @@ const lightModeLightBackground = "#FFFFFF";
 const lightModeDarkBackground = "#D8D8D8";
 const lightModeFontColor = "#000000";
 const darkModeFontColor = "#F8F8FF";
-const darkModeLightBackground = "#D8BFD8";
-const darkModeDarkBackground = "#4B0082";
+const darkModeLightBackground = "#808080";
+const darkModeDarkBackground = "#696969";
 
 
 
