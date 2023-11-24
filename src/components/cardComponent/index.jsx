@@ -11,7 +11,9 @@ export default function CardComponent({ nome, dado }) {
 
 
 const CardEstilizado = styled.div`
-    width: 500px;
+     flex: 1 0 45%; 
+     //width: 500px;
+     margin: 10px;
     height: 180px;
     background-color: DarkMagenta;
     border-radius: 25px;
