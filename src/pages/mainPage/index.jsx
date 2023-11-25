@@ -171,7 +171,7 @@ function unitsChange(){
                 </header>
                 {displayData === "Hoje" ? (
                 <Hoje>
-                    <DadosDeHoje  className="animate__animated animate__fadeInRightBig">
+                    <DadosDeHoje  key={animationKey}  className="animate__animated animate__fadeInRightBig">
                         <CardComponent mode={mode}
                             nome="Mínima"
                             dado={`${details.minima} ${unit}`}
