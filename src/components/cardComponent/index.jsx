@@ -36,7 +36,7 @@ font-size: 24px;
     .dado, .nome{
         color: white;
     }
-    @media (max-width: 1000px) {
+    @media (max-width: 1200px) {
         display: flex;
         flex-direction: column;
         align-items: center;
