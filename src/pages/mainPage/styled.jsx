@@ -170,6 +170,10 @@ export const WeatherDetails = styled.section`
         justify-content: center;
     }
   }
+  @media (max-width: 550px) {
+   height: fit-content;
+   background-color: red;
+  }
 `
 
 
@@ -228,6 +232,7 @@ export const Hoje = styled.div`
     align-self: center;
     justify-content: space-around;
     p{
+        margin-top: 30px;
         text-align: center;
     }
   }
