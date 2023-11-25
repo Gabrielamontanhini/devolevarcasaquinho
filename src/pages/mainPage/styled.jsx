@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const StyledMain = styled.main`
     display: flex;
-height: 100%;
+    height: 100%;
     @media (max-width: 1100px) {
     flex-direction: column;
   }
@@ -18,7 +18,6 @@ export const CurrentWeather = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-
     flex: 1;
     header{
         display: flex;
@@ -30,7 +29,7 @@ export const CurrentWeather = styled.section`
     h1{
        font-size: 55px;
        font-weight: 600;
-       color: ${(props) => (props.mode === "darkmode" ? "white" : "black")};
+       color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeFontColor) : (colors.lightModeFontColor))};
     }
     fieldset{
         width: 80%;
@@ -51,12 +50,9 @@ export const CurrentWeather = styled.section`
         outline: none;
     }
     }
-    
     h2{
-        font-size: 140px;
+        font-size: 110px;
         font-weight: 300;
-
-        
     }
     h3{
         font-size: 32px;
@@ -65,7 +61,7 @@ export const CurrentWeather = styled.section`
     }
   p{
     text-shadow:
-        ${(props) => (props.mode === "darkmode" ? (  `0 0 7px #fff,
+        ${(props) => (props.mode === "darkmode" ? (`0 0 7px #fff,
     0 0 10px #fff,
     0 0 2px #fff,
     0 0 4px #ffffff,
@@ -77,7 +73,7 @@ export const CurrentWeather = styled.section`
   footer{
     p{
         text-shadow: none;
-        color:${(props) => (props.mode === "darkmode" ? "white" : "black")};
+        color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeFontColor) : (colors.lightModeFontColor))};
     }
   }
     background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeLightBackground) : (colors.lightModeLightBackground))};
@@ -85,13 +81,18 @@ export const CurrentWeather = styled.section`
     @media (max-width: 1100px) {
         margin-top: 20px;
         margin-bottom: 20px;
-    flex: 0;
+        flex: 0;
     header{
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         margin-bottom: 10px;
+  //      background-color: pink;
+        h1{
+            width: min-content;
+           // background-color: red;
+        }
     }
     h1{
         font-size: 44px;
@@ -111,7 +112,6 @@ export const CurrentWeather = styled.section`
         height: 60px;
     }
     }
-    
   }
 `
 
@@ -126,10 +126,10 @@ export const WeatherDetails = styled.section`
     menu{
         display: flex;
         justify-content: space-between;
-        width: 40%;
+        width: 60%;
     }
     li{
-        font-size: 48px;
+        font-size: 40px;
         font-weight: 400;
         list-style-type: none;
     }
@@ -141,13 +141,14 @@ export const WeatherDetails = styled.section`
         font-size: 24px;
     }
     p, h1, li{
-        color: ${(props) => (props.mode === "darkmode" ? "white" : "black")};
+        color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeFontColor) : (colors.lightModeFontColor))};
     }
     @media (max-width: 1100px) {
     padding: 15px;
     menu{
-        width: 90%;
+        width: 60%;
         align-self: center;
+
     }
     li{
         font-size: 28px;
@@ -186,11 +187,10 @@ export const TemperatureAndWeather = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-   
     h2, h3{
         color: ${(props) => props.textColor};
         text-shadow:
-        ${(props) => (props.mode === "darkmode" ? (  `0 0 7px #fff,
+        ${(props) => (props.mode === "darkmode" ? (`0 0 7px #fff,
     0 0 10px #fff,
     0 0 2px #fff,
     0 0 4px #ffffff,
@@ -198,7 +198,6 @@ export const TemperatureAndWeather = styled.div`
     0 0 9px #ffffff,
     0 0 10px #ffffff,
     0 0 15px #9b9b9b;` ) : ("none"))};;
-  
     }
 `
 
@@ -210,7 +209,6 @@ export const TempAndImage = styled.div`
     img{
         width: 150px;
     }
-   
 `
 
 export const IconeEstilizado = styled(FontAwesomeIcon)`
@@ -223,7 +221,7 @@ export const IconeEstilizado = styled(FontAwesomeIcon)`
 export const Hoje = styled.div`
     width: 80%;
     height: 60%;
-    @media (max-width: 1000px) {
+    @media (max-width: 1100px) {
         height: max-content;
     display: flex;
     flex-direction: column;
@@ -231,7 +229,6 @@ export const Hoje = styled.div`
     justify-content: space-around;
     p{
         text-align: center;
-      
     }
   }
 `
@@ -245,10 +242,9 @@ export const DadosDeHoje = styled.div`
     flex-wrap: wrap ;
     align-items: center;
     justify-content: space-around;
-    @media (max-width: 1000px) {
+    @media (max-width: 1100px) {
         margin-bottom: 25px;
     }
-
 `
 export const SwitchButtons = styled.div`
     width: 80%;
@@ -272,21 +268,14 @@ export const DataEHora = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-
     p{
         font-size: 24px;
-        
-        color:
-        ${(props) => (props.mode === "darkmode" ? "white" : "black")};
+        color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeFontColor) : (colors.lightModeFontColor))};
         text-shadow: none;
     }
-    
-
-
     @media (max-width: 1100px) {
         p{
             font-size: 18px; 
         }
     }
-
 `

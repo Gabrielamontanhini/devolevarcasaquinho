@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <StyledApp>
+    <StyledApp mode={mode}>
       <ModeContext.Provider value={{ mode, setMode, setModeAndPersist }}>
         <MainPage />
       </ModeContext.Provider>
@@ -29,7 +29,7 @@ function App() {
 const StyledApp = styled.div`
   width: 100vw;
   height: 100dvh;
- 
+  background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeLightBackground) : (colors.lightModeLightBackground))};
   
 `
 

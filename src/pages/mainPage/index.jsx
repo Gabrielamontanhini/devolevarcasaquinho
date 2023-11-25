@@ -135,19 +135,19 @@ function unitsChange(){
                 {displayData === "Hoje" ? (
                 <Hoje>
                     <DadosDeHoje>
-                        <CardComponent
+                        <CardComponent mode={mode}
                             nome="Mínima"
                             dado={`${details.minima} ${unit}`}
                         />
-                        <CardComponent
+                        <CardComponent mode={mode}
                             nome="Máxima"
                             dado={`${details.maxima} ${unit}`}
                         />
-                        <CardComponent
+                        <CardComponent mode={mode}
                             nome="Umidade"
                             dado={details.umidade}
                         />
-                        <CardComponent
+                        <CardComponent mode={mode}
                             nome="Velocidade do vento"
                             dado={`${details.vento} ${unit === "ºC"?"m/s":"mph"}`}
                         />

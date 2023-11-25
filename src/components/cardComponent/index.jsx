@@ -1,9 +1,10 @@
 import styled from "styled-components"
+import { colors } from "../../constants/colors/colors"
 
-export default function CardComponent({ nome, dado }) {
+export default function CardComponent({ nome, dado , mode}) {
     return (
-        <CardEstilizado>
-            <p>{nome ? nome : "Nome"}</p>
+        <CardEstilizado mode={mode}>
+            <p className="nome">{nome ? nome : "Nome"}</p>
             <p className="dado">{dado ? dado : "0"}</p>
         </CardEstilizado>
     )
@@ -14,7 +15,7 @@ const CardEstilizado = styled.div`
      flex: 1 0 45%; 
      margin: 10px;
     height: 180px;
-    background-color: DarkMagenta;
+    background: linear-gradient(to right, ${(props) => (props.mode === "darkmode" ? "#4D4494,  #BA55D3" : "#800080, #BA55D3")});
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -32,7 +33,9 @@ font-size: 24px;
     .dado{
         font-size: 48px;
     }
-
+    .dado, .nome{
+        color: white;
+    }
     @media (max-width: 1000px) {
         display: flex;
         flex-direction: column;
