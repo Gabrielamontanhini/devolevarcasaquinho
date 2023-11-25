@@ -48,7 +48,11 @@ export default function MainPage() {
         }
     }, []);
 
-
+function handleKeyDown(e){
+    if (e.key === 'Enter') {
+        handleSearch() 
+    }
+}
     function handleSearch() {
        const search = fetchDataByCityName(searchCity, setDetails, unit, setTextColor, setError)   
        setSearchCity('')
@@ -99,6 +103,7 @@ function unitsChange(){
                     <IconeEstilizado icon={faSearch} onClick={handleSearch} />
                     <input
                         type="text"
+                        onKeyDown={handleKeyDown}
                         placeholder="Procure por uma cidade"
                         value={searchCity}
                         onChange={(e) => setSearchCity(e.target.value)}
