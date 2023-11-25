@@ -10,11 +10,14 @@ import { fetchDataByCityName, fetchDataByLatAndLong, fetchSevenDaysData } from "
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { CurrentWeather, DadosDeHoje, DataEHora, Hoje, IconeEstilizado, LinhaDivisoria, StyledMain, TempAndImage, TemperatureAndWeather, WeatherDetails } from "./styled";
 import ModeContext from "../../contexts/modeContext";
+import Swal from "sweetalert2";
 
 
 export default function MainPage() {
     const {setModeAndPersist} = useContext(ModeContext)
     const {mode}=useContext(ModeContext)
+    const [dataFormatada, setDataFormatada] = useState('');
+    const [horaFormatada, setHoraFormatada] = useState('');
     const [nextDays, setNextDays] = useState([])
     const [unit, setUnit] = useState("ºC")
     const [searchCity, setSearchCity] = useState()
@@ -38,8 +41,31 @@ export default function MainPage() {
 
 
     useEffect(() => {
+        const agora = new Date();
+      
+        // Formato para a data (DD/MM/YYYY)
+        const formatoData = new Intl.DateTimeFormat('pt-BR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        });
+        const dataFormatada = formatoData.format(agora);
+  
+        // Formato para o dia da semana e hora
+        const formatoHora = new Intl.DateTimeFormat('pt-BR', {
+          weekday: 'long',
+          hour: 'numeric',
+          minute: 'numeric',
+        });
+        const horaFormatada = formatoHora.format(agora);
+  
+        setDataFormatada(dataFormatada);
+        setHoraFormatada(horaFormatada);
+        
         navigator.geolocation.getCurrentPosition(
-            (position) => {fetchDataByLatAndLong(position.coords.latitude, position.coords.longitude, setDetails, unit, setTextColor)},
+            (position) => {
+                fetchDataByLatAndLong(position.coords.latitude, position.coords.longitude, setDetails, unit, setTextColor)
+            },
             (error) => {console.error('Erro ao pegar geolocalização:', error.message);});
         if (mode === "darkmode"){
             setDarkCat(DarkCatWithCoat)
@@ -54,7 +80,8 @@ function handleKeyDown(e){
     }
 }
     function handleSearch() {
-       const search = fetchDataByCityName(searchCity, setDetails, unit, setTextColor, setError)   
+       
+      fetchDataByCityName(searchCity, setDetails, unit, setTextColor, setError)   
        setSearchCity('')
     }
 
@@ -118,8 +145,8 @@ function unitsChange(){
                 </TemperatureAndWeather>
                 <LinhaDivisoria />
                 <DataEHora mode={mode}>
-                    <p>16/11/2023</p>
-                    <p>Quinta-feira, 16:32</p>
+                    <p>{dataFormatada}</p>
+                    <p>{horaFormatada}</p>
                 </DataEHora>
                 <FormGroup>
                     <FormControlLabel control={<Switch onClick={unitsChange} />} label="Fº"  />

@@ -5,7 +5,7 @@ const apiKey = import.meta.env.VITE_APIKEY;
 
 const url = "https://api.openweathermap.org/data/2.5"
 
-export function fetchDataByLatAndLong(lat, long, setDetails, unit, setTextColor,setError) {
+export function fetchDataByLatAndLong(lat, long, setDetails, unit, setTextColor) {
     const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}&lang=pt_br`)
     response.then((res) => {
 console.log(res.data)
@@ -24,16 +24,19 @@ console.log(res.data)
         })
         const verified = verifyColor(res.data.weather[0].id)
         setTextColor(verified)
-        setError(null)
     })
     response.catch((err)=>{
-        setError(err.response.data)
+        Swal.fire({
+            title: `${err.response.data.cod === "404" ? "Cidade não encontrada" : "Busca não efetuada"}`,
+            text: "Verifique o nome da cidade que você digitou",
+            icon: "error"
+          });
        
     })
 }
 
 
-export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor, setError) {
+export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) {
     const response = axios.get(`${url}/weather?q=${searchCity}&lang=pt_br&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}`)
     response.then((res) => {
         console.log(res.data)
@@ -52,7 +55,7 @@ export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor, 
         })
         const verified = verifyColor(res.data.weather[0].id)
         setTextColor(verified)
-        setError(null)
+       
     })
     response.catch((err)=>{
         console.log(err.response.data)
