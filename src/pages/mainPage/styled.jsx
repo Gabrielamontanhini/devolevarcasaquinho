@@ -172,7 +172,6 @@ export const WeatherDetails = styled.section`
   }
   @media (max-width: 550px) {
    height: fit-content;
-   background-color: red;
   }
 `
 
