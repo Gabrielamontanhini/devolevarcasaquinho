@@ -3,7 +3,7 @@ import { colors } from "../../constants/colors/colors"
 
 export default function CardComponent({ nome, dado , mode}) {
     return (
-        <CardEstilizado mode={mode}>
+        <CardEstilizado mode={mode} className="animate__animated animate__fadeInRightBig">
             <p className="nome">{nome ? nome : "Nome"}</p>
             <p className="dado">{dado ? dado : "0"}</p>
         </CardEstilizado>

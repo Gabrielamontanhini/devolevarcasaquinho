@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../constants/colors/colors";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import 'animate.css';
 
 
 

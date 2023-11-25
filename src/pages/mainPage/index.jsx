@@ -10,7 +10,8 @@ import { fetchDataByCityName, fetchDataByLatAndLong, fetchSevenDaysData } from "
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { CurrentWeather, DadosDeHoje, DataEHora, Hoje, IconeEstilizado, LinhaDivisoria, StyledMain, TempAndImage, TemperatureAndWeather, WeatherDetails } from "./styled";
 import ModeContext from "../../contexts/modeContext";
-import Swal from "sweetalert2";
+
+import 'animate.css';
 
 
 export default function MainPage() {
@@ -24,7 +25,7 @@ export default function MainPage() {
     const [displayData, setDisplayData] = useState("Hoje")
     const [darkCat, setDarkCat]=useState(CatWithCoat)
     const [textColor, setTextColor]=useState("#C71585")
-    const [error, setError]=useState()
+    const [animationKey, setAnimationKey] = useState(0)
     const [details, setDetails] = useState({
         cidade: '',
         latitude: '',
@@ -43,7 +44,6 @@ export default function MainPage() {
     useEffect(() => {
         const agora = new Date();
       
-        // Formato para a data (DD/MM/YYYY)
         const formatoData = new Intl.DateTimeFormat('pt-BR', {
           day: '2-digit',
           month: '2-digit',
@@ -51,7 +51,6 @@ export default function MainPage() {
         });
         const dataFormatada = formatoData.format(agora);
   
-        // Formato para o dia da semana e hora
         const formatoHora = new Intl.DateTimeFormat('pt-BR', {
           weekday: 'long',
           hour: 'numeric',
@@ -98,11 +97,16 @@ function handleKeyDown(e){
 
 
     function switchMode() {
+        
+        setAnimationKey((prevKey) => prevKey + 1);
         if (mode === "darkmode"){
             setModeAndPersist("lightmode")
-            setDarkCat(catTeste)         
+          
+            setDarkCat(catTeste)  
+                   
         } else {
             setModeAndPersist("darkmode")
+            
             setDarkCat(DarkCatWithCoat)  
 
         }
@@ -123,7 +127,7 @@ function unitsChange(){
         <StyledMain>
             <CurrentWeather mode={mode}>
                 <header>
-                    <img src={darkCat} alt="cat" />
+                    <img src={darkCat} alt="cat"  key={animationKey}  className={"animate__animated animate__slideInDown animate__slow"}/>
                     <h1 >Devo levar um casaquinho?</h1>
                 </header>
                 <fieldset>
@@ -139,7 +143,7 @@ function unitsChange(){
                 <TemperatureAndWeather textColor={textColor} mode={mode}>
                     <TempAndImage >
                         <img src={`https://openweathermap.org/img/wn/${details.icon}@2x.png`}  alt="current-weather" />
-                        <h2>{details.temperaturaAtual}{unit}</h2>
+                        <h2 >{details.temperaturaAtual}{unit}</h2>
                     </TempAndImage>
                     <h3>    {details.descrição}</h3>
                 </TemperatureAndWeather>
@@ -162,12 +166,12 @@ function unitsChange(){
                     <li onClick={handleDisplayData}>Próximos Dias</li>
                 </menu>
                 <header>
-                    <h1>{details.cidade}</h1>
+                    <h1 >{details.cidade}</h1>
                     <p>Lat: {details.latitude} Long: {details.longitude}</p>
                 </header>
                 {displayData === "Hoje" ? (
                 <Hoje>
-                    <DadosDeHoje>
+                    <DadosDeHoje  className="animate__animated animate__fadeInRightBig">
                         <CardComponent mode={mode}
                             nome="Mínima"
                             dado={`${details.minima} ${unit}`}
