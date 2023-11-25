@@ -26,6 +26,7 @@ export default function MainPage() {
     const [darkCat, setDarkCat]=useState(CatWithCoat)
     const [textColor, setTextColor]=useState("#C71585")
     const [animationKey, setAnimationKey] = useState(0)
+    const [animationKeyNumber, setAnimationKeyNumber]=useState(0)
     const [details, setDetails] = useState({
         cidade: '',
         latitude: '',
@@ -114,6 +115,7 @@ function handleKeyDown(e){
     }
 
 function unitsChange(){
+    setAnimationKeyNumber((prevKey) => prevKey + 1);
     if (unit === "ºC"){
         setUnit("ºF")
         fetchDataByLatAndLong(details.latitude, details.longitude, setDetails, "ºF")
@@ -143,7 +145,7 @@ function unitsChange(){
                 <TemperatureAndWeather textColor={textColor} mode={mode}>
                     <TempAndImage >
                         <img src={`https://openweathermap.org/img/wn/${details.icon}@2x.png`}  alt="current-weather" />
-                        <h2 >{details.temperaturaAtual}{unit}</h2>
+                        <h2 key={animationKeyNumber} className="animate__animated  animate__fadeIn animate__slower  animate__delay-0.9s" >{details.temperaturaAtual}{unit}</h2>
                     </TempAndImage>
                     <h3>    {details.descrição}</h3>
                 </TemperatureAndWeather>
@@ -171,20 +173,20 @@ function unitsChange(){
                 </header>
                 {displayData === "Hoje" ? (
                 <Hoje>
-                    <DadosDeHoje  key={animationKey}  className="animate__animated animate__fadeInRightBig">
+                    <DadosDeHoje  key={animationKeyNumber}  className="animate__animated  animate__fadeIn animate__slower">
                         <CardComponent mode={mode}
                             nome="Mínima"
                             dado={`${details.minima} ${unit}`}
                         />
-                        <CardComponent mode={mode}
+                        <CardComponent mode={mode} 
                             nome="Máxima"
                             dado={`${details.maxima} ${unit}`}
                         />
-                        <CardComponent mode={mode}
+                        <CardComponent mode={mode} 
                             nome="Umidade"
                             dado={details.umidade}
                         />
-                        <CardComponent mode={mode}
+                        <CardComponent mode={mode} 
                             nome="Velocidade do vento"
                             dado={`${details.vento} ${unit === "ºC"?"m/s":"mph"}`}
                         />
