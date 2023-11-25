@@ -1,10 +1,11 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const apiKey = import.meta.env.VITE_APIKEY;
 
 const url = "https://api.openweathermap.org/data/2.5"
 
-export function fetchDataByLatAndLong(lat, long, setDetails, unit, setTextColor) {
+export function fetchDataByLatAndLong(lat, long, setDetails, unit, setTextColor,setError) {
     const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}&lang=pt_br`)
     response.then((res) => {
 console.log(res.data)
@@ -12,7 +13,7 @@ console.log(res.data)
             cidade: (res.data.name),
             latitude: (res.data.coord.lat),
             longitude: (res.data.coord.lon),
-            temperaturaAtual: (res.data.main.temp),
+            temperaturaAtual: (res.data.main.temp).toFixed(1),
             descrição: (res.data.weather[0].description),
             idWeather: (res.data.weather[0].id),
             icon:(res.data.weather[0].icon),
@@ -23,15 +24,16 @@ console.log(res.data)
         })
         const verified = verifyColor(res.data.weather[0].id)
         setTextColor(verified)
+        setError(null)
     })
-    response.catch((err) => {
-        console.log(err)
-        console.log(lat, long)
+    response.catch((err)=>{
+        setError(err.response.data)
+       
     })
 }
 
 
-export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) {
+export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor, setError) {
     const response = axios.get(`${url}/weather?q=${searchCity}&lang=pt_br&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}`)
     response.then((res) => {
         console.log(res.data)
@@ -39,7 +41,7 @@ export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) 
             cidade: (res.data.name),
             latitude: (res.data.coord.lat),
             longitude: (res.data.coord.lon),
-            temperaturaAtual: (res.data.main.temp),
+            temperaturaAtual: (res.data.main.temp).toFixed(1),
             descrição: (res.data.weather[0].description),
             idWeather: (res.data.weather[0].id),
             icon:(res.data.weather[0].icon),
@@ -50,6 +52,15 @@ export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) 
         })
         const verified = verifyColor(res.data.weather[0].id)
         setTextColor(verified)
+        setError(null)
+    })
+    response.catch((err)=>{
+        console.log(err.response.data)
+        Swal.fire({
+            title: `${err.response.data.cod === "404" ? "Cidade não encontrada" : "Busca não efetuada"}`,
+            text: "Verifique o nome da cidade que você digitou",
+            icon: "error"
+          });
     })
 }
 
@@ -68,6 +79,7 @@ export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
     })
     response.catch((err) => {
         console.log(err.response.data)
+        return err.response.data
     })
 }
 

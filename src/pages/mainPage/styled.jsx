@@ -23,11 +23,12 @@ export const CurrentWeather = styled.section`
         display: flex;
         width: 80%;
         img{
-            height: 120px;
+            width: 110px;
+            height: auto;
         }
     }
     h1{
-       font-size: 55px;
+       font-size: 45px;
        font-weight: 600;
        color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeFontColor) : (colors.lightModeFontColor))};
     }
@@ -113,6 +114,17 @@ export const CurrentWeather = styled.section`
     }
     }
   }
+  @media (max-width: 550px) {
+    header{
+        img{
+            width: 80px;
+            height: auto;
+        }
+        h1{
+            font-size: 30px;
+        }
+    }
+  }
 `
 
 export const WeatherDetails = styled.section`
@@ -172,6 +184,9 @@ export const WeatherDetails = styled.section`
   }
   @media (max-width: 550px) {
    height: fit-content;
+   li{
+    font-size: 18px;
+   }
   }
 `
 

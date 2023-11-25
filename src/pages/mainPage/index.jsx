@@ -21,6 +21,7 @@ export default function MainPage() {
     const [displayData, setDisplayData] = useState("Hoje")
     const [darkCat, setDarkCat]=useState(CatWithCoat)
     const [textColor, setTextColor]=useState("#C71585")
+    const [error, setError]=useState()
     const [details, setDetails] = useState({
         cidade: '',
         latitude: '',
@@ -49,8 +50,8 @@ export default function MainPage() {
 
 
     function handleSearch() {
-        fetchDataByCityName(searchCity, setDetails, unit, setTextColor)
-        setSearchCity('')
+       const search = fetchDataByCityName(searchCity, setDetails, unit, setTextColor, setError)   
+       setSearchCity('')
     }
 
 
