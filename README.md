@@ -1,9 +1,18 @@
 #  Devo levar um casaquinho?
 Aplicação front end integrada a OpenWeatherMap Api.
+ 
+
+
+![Desktop Light](/src/assets/tela-light.png)
+![Desktop Dark](/src/assets/tela-dark.png)
+
+![Mobile Light](/src/assets/mobile-light.jpeg)
+![Mobile Dark](/src/assets/mobile-dark.jpeg)
 
 
 # Demo
-[https://devolevarcasaquinho.vercel.app/]
+[Deploy aqui!](https://devolevarcasaquinho.vercel.app/)
+
 
 # Como funciona?
 Este projeto é uma página front end integrada a uma API para mostrar a previsão do tempo, inicialmente da localização do usuário, ou, se ele pesquisar, da localidade pesquisada. É a opção de ver o gráfico com o tempo dos próximos dias.
