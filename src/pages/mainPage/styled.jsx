@@ -207,7 +207,7 @@ export const TemperatureAndWeather = styled.div`
     align-items: center;
     justify-content: space-between;
     h2, h3{
-        color: ${(props) => props.textColor};
+        color: ${(props) => props.textcolor};
         text-shadow:
         ${(props) => (props.mode === "darkmode" ? (`0 0 7px #fff,
     0 0 10px #fff,

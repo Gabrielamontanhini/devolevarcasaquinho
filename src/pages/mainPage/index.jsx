@@ -142,7 +142,7 @@ function unitsChange(){
                         onChange={(e) => setSearchCity(e.target.value)}
                     />
                 </fieldset>
-                <TemperatureAndWeather textColor={textColor} mode={mode}>
+                <TemperatureAndWeather textcolor={textColor} mode={mode}>
                     <TempAndImage >
                         <img src={`https://openweathermap.org/img/wn/${details.icon}@2x.png`}  alt="current-weather" />
                         <h2 key={animationKeyNumber} className="animate__animated  animate__fadeIn animate__slower  animate__delay-0.9s" >{details.temperaturaAtual}{unit}</h2>

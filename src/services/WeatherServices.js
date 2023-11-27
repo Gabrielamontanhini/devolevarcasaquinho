@@ -87,28 +87,23 @@ export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
 }
 
 function verifyColor(id) {
-
     switch (true) {
         case id >= 200 && id <= 232:
-            return "#800080"; // Roxo
+            return "#800080"; 
         case (id >= 300 && id <= 321) || (id >= 500 && id <= 531):
-            return "#0000FF"; // Azul
+            return "#0000FF"; 
         case id >= 600 && id <= 622:
-            // Snow (neve)
-            return "#F5F5F5"; // Cinza claro
+            return "#F5F5F5"; 
         case id >= 701 && id <= 781:
-            return "#F5F5F5"; // Cinza claro
+            return "#E6E6FA"; 
         case id === 800:
-            return "#FFA500"; // Laranja
+            return "#FFA500"; 
         case id === 801 || id === 802:
-            // Few clouds (poucas nuvens) e Scattered clouds (nuvens dispersas)
-            return "#708090"; // Cinza
+            return "#708090"; 
         case id === 803:
-            // Broken clouds (nuvens quebradas)
-            return "#A9A9A9"; // Cinza escuro
+            return "#A9A9A9"; 
         case id === 804:
-            // Overcast clouds (nuvens nubladas)
-            return "#808080"; // Cinza
+            return "#808080";
         default:
             return "#000000"; 
     }
