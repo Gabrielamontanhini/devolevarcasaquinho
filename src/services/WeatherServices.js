@@ -73,13 +73,25 @@ export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) 
     })
 }
 
+
+
+function formatarData(dia) {
+    const diasDaSemana = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+    
+    const data = new Date(dia);
+    const diaSemana = diasDaSemana[data.getUTCDay()];
+    const dataFormatada = `${data.getUTCDate()}/${data.getUTCMonth() + 1} (${diaSemana})`;
+  
+    return dataFormatada;
+  }
+
 export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
     const response = axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}&lang=pt_br`)
 
     response.then((res) => {
         const novaLista = res.data.list
         const nextDaysForecast = novaLista.map((dado) => {
-            const formattedDate = format(parseISO(dado.dt_txt), 'dd/MM (eee)'); 
+            const formattedDate = formatarData(dado.dt_txt)
             return {
               dia: formattedDate,
               temperatura: dado.main.temp,
