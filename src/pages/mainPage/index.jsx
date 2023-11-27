@@ -159,7 +159,7 @@ function unitsChange(){
                     <FormControlLabel control={<Switch onClick={switchMode} checked={mode === "darkmode"}/>} label="DarkMode" style={{ fontSize: '24px' }}/>
                 </FormGroup>
                 <footer>
-                    <p>Nenhum direito reservado. 2023</p>
+                    <p>Todos os direitos reservados. 2023</p>
                 </footer>
             </CurrentWeather>
             <WeatherDetails mode={mode}>
@@ -206,7 +206,7 @@ function unitsChange(){
                     />
                 )}
                 <footer>
-                    <p>Dados retirados da minha cabecinha</p>
+                    <p>Dados retirados da OpenWeatherMap API</p>
                 </footer>
             </WeatherDetails>
         </StyledMain>
