@@ -193,7 +193,7 @@ function unitsChange(){
                     </DadosDeHoje>
 
 
-                    <p>{(details.minima > 25 && unit === "ºC") || (details.minima > 77 && unit === "Fº") ? "Não, não precisa de casaqunho!" : "Sim! É uma boa ideia levar um casaquinho!"}</p>
+                    <p>{(details.minima < 17 && unit === "ºC") || (details.minima < 62.6 && unit === "Fº") ? "Sim! É uma boa ideia levar um casaquinho!": "Não, não precisa de casaqunho!" }</p>
                 </Hoje>
                 ) : (
                     <GraficoComponent
