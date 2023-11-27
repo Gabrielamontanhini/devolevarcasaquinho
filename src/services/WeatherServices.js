@@ -45,7 +45,7 @@ console.log(res.data)
 export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) {
     const response = axios.get(`${url}/weather?q=${searchCity}&lang=pt_br&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}`)
     response.then((res) => {
-        console.log(res.data)
+        
         setDetails({
             cidade: (res.data.name),
             latitude: (res.data.coord.lat),
@@ -98,7 +98,7 @@ export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
             };
           });
           setNextDays(nextDaysForecast); 
-          console.log(nextDaysForecast)
+       
         });
     response.catch((err) => {
    
