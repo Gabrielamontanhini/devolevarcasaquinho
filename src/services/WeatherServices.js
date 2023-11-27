@@ -1,5 +1,11 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { format, parseISO } from 'date-fns';
+
+
+
+
+
 
 const apiKey = import.meta.env.VITE_APIKEY;
 
@@ -73,15 +79,17 @@ export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
     response.then((res) => {
         const novaLista = res.data.list
         const nextDaysForecast = novaLista.map((dado) => {
+            const formattedDate = format(parseISO(dado.dt_txt), 'dd/MM (eee)'); 
             return {
-                name: dado.dt_txt,
-                value: dado.main.temp
-            }
-        })
-        setNextDays(nextDaysForecast)
-    })
+              dia: formattedDate,
+              temperatura: dado.main.temp,
+            };
+          });
+          setNextDays(nextDaysForecast); 
+          console.log(nextDaysForecast)
+        });
     response.catch((err) => {
-        console.log(err.response.data)
+   
         return err.response.data
     })
 }

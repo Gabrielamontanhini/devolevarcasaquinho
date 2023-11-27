@@ -8,11 +8,11 @@ export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cida
     const [weatherData, setWeatherData] = useState()
     const [parametro, setParametro] = useState()
 
-    const data = [{ name: "A", value: 200 },
-    { name: "B", value: 300 }, { name: "C", value: 100 },
-    { name: "D", value: 200 }, { name: "E", value: 200 },
-    { name: "F", value: 300 }, { name: "G", value: 100 },
-    { name: "H", value: 1000 }]
+    const data = [{ dia: "A", temperatura: 200 },
+    { dia: "B", temperatura: 300 }, { dia: "C", temperatura: 100 },
+    { dia: "D", temperatura: 200 }, { dia: "E", temperatura: 200 },
+    { dia: "F", temperatura: 300 }, { dia: "G", temperatura: 100 },
+    { dia: "H", temperatura: 1000 }]
 
 
     const [teste, setTeste] = useState(nextDays)
@@ -34,9 +34,9 @@ export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cida
 
         <StyledResponsiveContainer width="80%" height="60%">
             <LineChart   data={nextDays}>
-                <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                <Line type="monotone" dataKey="temperatura" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="dia" />
                 <YAxis />
                 <Tooltip />
             </LineChart>

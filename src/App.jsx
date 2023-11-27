@@ -4,7 +4,12 @@ import MainPage from './pages/mainPage'
 import { colors } from './constants/colors/colors'
 import ModeProvider from './contexts/modeContext'
 import ModeContext from './contexts/modeContext'
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import ptBR from 'date-fns/locale/pt-BR';
 
+registerLocale('pt-BR', ptBR);
+
+setDefaultLocale('pt-BR');
 
 function App() {
 
