@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
 import { fetchSevenDaysData } from '../../services/WeatherServices';
 
 
-export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cidade , unit}) {
+export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cidade, unit }) {
     const [weatherData, setWeatherData] = useState()
     const [parametro, setParametro] = useState()
 
@@ -28,30 +28,35 @@ export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cida
 
     }, [unit])
 
-    function verificarDados() {
-        console.log(teste)
-    }
+   
 
     return (
-        <Gráfico onClick={verificarDados}>
-            <LineChart width={1000} height={450} data={nextDays} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+
+        <StyledResponsiveContainer width="80%" height="60%">
+            <LineChart   data={nextDays}>
                 <Line type="monotone" dataKey="value" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
             </LineChart>
-        </Gráfico>
+        </StyledResponsiveContainer>
+
     )
 }
 
 
-const Gráfico = styled.div`
-    width: 80%;
-    height: 50%;
+
+
+const StyledResponsiveContainer = styled(ResponsiveContainer)`
+    
     background-color: white;
     display: flex;
     align-self: flex-start;
     padding-top: 2%;
-    margin-bottom: 7%;
+    padding-right: 2%;
+    @media (max-width: 1100px) {
+        align-self: center;
+    }
+ 
 `

@@ -81,7 +81,7 @@ function handleKeyDown(e){
 }
     function handleSearch() {
        
-      fetchDataByCityName(searchCity, setDetails, unit, setTextColor)   
+      fetchDataByCityName(searchCity.trim(), setDetails, unit, setTextColor)   
        setSearchCity('')
     }
 
