@@ -139,15 +139,15 @@ export default function MainPage() {
                         onChange={(e) => setSearchCity(e.target.value)}
                     />
                 </fieldset>
-                <TemperatureAndWeather textcolor={textColor} mode={mode}>
+                <TemperatureAndWeather textcolor={textColor} mode={mode} key={animationKeyNumber} className="animate__animated  animate__fadeIn animate__slower  animate__delay-0.9s" >
                     <TempAndImage >
                         <img src={`https://openweathermap.org/img/wn/${details.icon}@2x.png`} alt="current-weather" />
                         <h2 key={animationKeyNumber} className="animate__animated  animate__fadeIn animate__slower  animate__delay-0.9s" >
                             {details.temperaturaAtual}{unit}
                         </h2>
                     </TempAndImage>
-                    <h2 key={animationKeyNumber} className="sensação animate__animated  animate__fadeIn animate__slower  animate__delay-0.9s" >Sensação: {details.sensação}{unit}</h2>
-                    <h3>
+                    <h2 className="sensação" >Sensação: {details.sensação}{unit}</h2>
+                    <h3 >
                         {details.descrição}
                     </h3>
                 </TemperatureAndWeather>
