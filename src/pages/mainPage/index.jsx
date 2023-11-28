@@ -34,6 +34,7 @@ export default function MainPage() {
         cidade: '',
         latitude: '',
         longitude: '',
+        sensação: '',
         temperaturaAtual: '',
         descrição: '',
         idWeather: '',
@@ -145,6 +146,7 @@ export default function MainPage() {
                             {details.temperaturaAtual}{unit}
                         </h2>
                     </TempAndImage>
+                    <h2 key={animationKeyNumber} className="sensação animate__animated  animate__fadeIn animate__slower  animate__delay-0.9s" >Sensação: {details.sensação}{unit}</h2>
                     <h3>
                         {details.descrição}
                     </h3>

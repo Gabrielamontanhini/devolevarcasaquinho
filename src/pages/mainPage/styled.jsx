@@ -216,6 +216,9 @@ export const TemperatureAndWeather = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    .sensação {
+        font-size: 20px;
+    }
     h2, h3{
         color: ${(props) => props.textcolor};
         text-shadow:
