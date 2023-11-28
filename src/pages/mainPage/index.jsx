@@ -88,10 +88,11 @@ function handleKeyDown(e){
 
 
     function handleDisplayData() {
+        console.log(displayData)
         if (displayData === "Hoje") {
             fetchSevenDaysData(details.latitude, details.longitude, setNextDays, unit)
             setDisplayData("proximos")
-        } else {
+        } else if (displayData === "proximos") {
             setDisplayData("Hoje")
         }
     }
@@ -162,10 +163,10 @@ function unitsChange(){
                     <p>Todos os direitos reservados. 2023</p>
                 </footer>
             </CurrentWeather>
-            <WeatherDetails mode={mode}>
-                <menu>
-                    <li onClick={handleDisplayData}>Hoje</li>
-                    <li onClick={handleDisplayData}>Próximos Dias</li>
+            <WeatherDetails mode={mode} displayData={displayData}>
+                <menu >
+                    <li className="hoje" onClick={handleDisplayData}>Hoje</li>
+                    <li className="prox" onClick={handleDisplayData}>Próximos Dias</li>
                 </menu>
                 <header>
                     <h1 >{details.cidade}</h1>
@@ -184,7 +185,7 @@ function unitsChange(){
                         />
                         <CardComponent mode={mode} 
                             nome="Umidade"
-                            dado={details.umidade}
+                            dado={`${details.umidade}%`}
                         />
                         <CardComponent mode={mode} 
                             nome="Velocidade do vento"
@@ -203,6 +204,7 @@ function unitsChange(){
                         setNextDays={setNextDays}
                         cidade={details.cidade}
                         unit={unit}
+                        details={details}
                     />
                 )}
                 <footer>

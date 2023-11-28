@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../../constants/colors/colors"
+
 
 export default function CardComponent({ nome, dado , mode}) {
     return (

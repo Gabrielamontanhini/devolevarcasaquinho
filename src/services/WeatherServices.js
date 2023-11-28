@@ -90,13 +90,19 @@ export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
 
     response.then((res) => {
         const novaLista = res.data.list
+       
         const nextDaysForecast = novaLista.map((dado) => {
             const formattedDate = formatarData(dado.dt_txt)
             return {
               dia: formattedDate,
-              temperatura: dado.main.temp,
+              temperatura: `${dado.main.temp} ${unit}`,
+              temp: dado.main.temp,
+              sensação: dado.main.feels_like,
+             max:dado.main.temp_max,
+             min:dado.main.temp_min
             };
           });
+       console.log(nextDaysForecast)  
           setNextDays(nextDaysForecast); 
        
         });

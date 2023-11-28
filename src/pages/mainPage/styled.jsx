@@ -145,9 +145,19 @@ export const WeatherDetails = styled.section`
         font-size: 40px;
         font-weight: 400;
         list-style-type: none;
+        cursor: pointer;
+     
+    }
+    .hoje{
+        color: ${(props) => ((props.displayData == "Hoje") ? "#C8C8C8" : "black")};
+       
+    }
+    .prox{
+        color: ${(props) => (props.displayData == "Hoje" ?  "black" : "#C8C8C8")};
+       
     }
     h1{
-        font-size: 150px;
+        font-size: 130px;
         font-weight: 400;
     }
     p{
@@ -240,6 +250,9 @@ export const IconeEstilizado = styled(FontAwesomeIcon)`
 export const Hoje = styled.div`
     width: 80%;
     height: 60%;
+    p{
+        color: #AFADAD;
+    }
     @media (max-width: 1100px) {
         height: max-content;
     display: flex;
