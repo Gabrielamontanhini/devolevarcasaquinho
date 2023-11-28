@@ -195,7 +195,7 @@ export default function MainPage() {
                                 dado={`${details.vento} ${unit === "ºC" ? "m/s" : "mph"}`}
                             />
                         </DadosDeHoje>
-                        <p>{(details.minima < 17 && unit === "ºC") || (details.minima < 62.6 && unit === "Fº") ? "Sim! É uma boa ideia levar um casaquinho!" : "Não, não precisa de casaqunho!"}</p>
+                        <p>{(details.minima < 17 && unit === "ºC") || (details.minima < 62.6 && unit === "Fº") ? "Sim! É uma boa ideia levar um casaquinho!" : "Não, não precisa de casaquinho!"}</p>
                     </Hoje>
                 ) : (
                     <GraficoComponent
