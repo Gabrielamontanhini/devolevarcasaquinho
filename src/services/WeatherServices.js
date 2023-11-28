@@ -2,14 +2,30 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 
-
-
-
-
-
 const apiKey = import.meta.env.VITE_APIKEY;
 
 const url = "https://api.openweathermap.org/data/2.5"
+
+
+function formatarDataHoraLocal(timezone) {
+    const dataHoraLocal = new Date(new Date().getTime() + timezone * 1000);
+
+    const formatoData = new Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
+    const dataFormatada = formatoData.format(dataHoraLocal);
+
+    const formatoHora = new Intl.DateTimeFormat('pt-BR', {
+        weekday: 'long',
+        hour: 'numeric',
+        minute: 'numeric',
+    });
+    const horaFormatada = formatoHora.format(dataHoraLocal);
+
+    return { dataFormatada, horaFormatada };
+}
 
 export function fetchDataByLatAndLong(lat, long, setDetails, unit, setTextColor) {
     const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}&lang=pt_br`)
@@ -26,7 +42,8 @@ console.log(res.data)
             minima: (res.data.main.temp_min),
             maxima: (res.data.main.temp_max),
             umidade: (res.data.main.humidity),
-            vento: (res.data.wind.speed)
+            vento: (res.data.wind.speed),
+            timezone: (res.data.timezone)
         })
         const verified = verifyColor(res.data.weather[0].id)
         setTextColor(verified)
@@ -42,10 +59,10 @@ console.log(res.data)
 }
 
 
-export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) {
+export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor,  horaFormatada, setHoraFormatada, dataFormatada, setDataFormatada) {
     const response = axios.get(`${url}/weather?q=${searchCity}&lang=pt_br&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}`)
     response.then((res) => {
-        
+        console.log(res.data)
         setDetails({
             cidade: (res.data.name),
             latitude: (res.data.coord.lat),
@@ -57,10 +74,16 @@ export function fetchDataByCityName(searchCity, setDetails, unit, setTextColor) 
             minima: (res.data.main.temp_min),
             maxima: (res.data.main.temp_max),
             umidade: (res.data.main.humidity),
-            vento: (res.data.wind.speed)
+            vento: (res.data.wind.speed),
+            timezone: (res.data.timezone)
         })
         const verified = verifyColor(res.data.weather[0].id)
         setTextColor(verified)
+        const { dataFormatada, horaFormatada } = formatarDataHoraLocal(res.data.timezone);
+
+        setDataFormatada(dataFormatada);
+        setHoraFormatada(horaFormatada);
+
        
     })
     response.catch((err)=>{
@@ -87,10 +110,9 @@ function formatarData(dia) {
 
 export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
     const response = axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit === "ºC" ? "metric" : "imperial"}&lang=pt_br`)
-
     response.then((res) => {
         const novaLista = res.data.list
-       
+  
         const nextDaysForecast = novaLista.map((dado) => {
             const formattedDate = formatarData(dado.dt_txt)
             return {
@@ -99,10 +121,10 @@ export function fetchSevenDaysData(lat, lon, setNextDays, unit) {
               temp: dado.main.temp,
               sensação: dado.main.feels_like,
              max:dado.main.temp_max,
-             min:dado.main.temp_min
+             min:dado.main.temp_min,
+             chuva: dado.rain? dado.rain["3h"] : 0
             };
-          });
-       console.log(nextDaysForecast)  
+          });  
           setNextDays(nextDaysForecast); 
        
         });

@@ -8,11 +8,8 @@ import ModeContext from './contexts/modeContext'
 
 
 function App() {
-
   const lsMode = localStorage.getItem("mode");
-
   const [mode, setMode] = useState(lsMode)
-
   function setModeAndPersist(mode) {
     setMode(mode)
     localStorage.setItem("mode", mode);
@@ -31,7 +28,6 @@ const StyledApp = styled.div`
   width: 100vw;
   height: 100dvh;
   background-color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeLightBackground) : (colors.lightModeLightBackground))};
-  
 `
 
 export default App
