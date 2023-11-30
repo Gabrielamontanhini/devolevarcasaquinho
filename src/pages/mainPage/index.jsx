@@ -198,6 +198,7 @@ export default function MainPage() {
                         <p>{(details.minima < 17 && unit === "ºC") || (details.minima < 62.6 && unit === "Fº") ? "Sim! É uma boa ideia levar um casaquinho!" : "Não, não precisa de casaquinho!"}</p>
                     </Hoje>
                 ) : (
+                    <div className="grafico">
                     <GraficoComponent
                         lat={details.latitude}
                         lon={details.longitude}
@@ -207,6 +208,7 @@ export default function MainPage() {
                         unit={unit}
                         details={details}
                     />
+                    </div>
                 )}
                 <DetailsFooter />
             </WeatherDetails>

@@ -166,10 +166,18 @@ export const WeatherDetails = styled.section`
     p, h1, li{
         color: ${(props) => (props.mode === "darkmode" ? (colors.darkModeFontColor) : (colors.lightModeFontColor))};
     }
+  .grafico{
+    width: 80%;
+    height: 60%;
+    
+  }
     @media (max-width: 1100px) {
     padding: 15px;
-
-    min-height: 600px;
+   height: fit-content;
+   .grafico{
+    align-self: center;
+    height: 400px;
+   }
     menu{
         width: 60%;
         align-self: center;
@@ -196,6 +204,10 @@ export const WeatherDetails = styled.section`
     }
   }
   @media (max-width: 550px) {
+    .grafico{
+        width: 90%;
+    height: 300px;
+   }
    li{
     font-size: 18px;
    }
