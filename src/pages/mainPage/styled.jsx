@@ -168,6 +168,8 @@ export const WeatherDetails = styled.section`
     }
     @media (max-width: 1100px) {
     padding: 15px;
+
+    min-height: 600px;
     menu{
         width: 60%;
         align-self: center;
@@ -194,7 +196,6 @@ export const WeatherDetails = styled.section`
     }
   }
   @media (max-width: 550px) {
-   height: fit-content;
    li{
     font-size: 18px;
    }
@@ -216,6 +217,7 @@ export const TemperatureAndWeather = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
     .sensação {
         font-size: 20px;
     }
@@ -238,9 +240,14 @@ export const TempAndImage = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+   
     img{
         width: 150px;
+        background:transparent;
+        border-radius: 50%;
+  
     }
+    
 `
 
 export const IconeEstilizado = styled(FontAwesomeIcon)`
