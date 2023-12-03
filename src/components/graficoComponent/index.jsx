@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Line, XAxis, Legend, YAxis, Tooltip, Area, ComposedChart, ReferenceLine } from 'recharts';
 
 import { fetchSevenDaysData } from '../../services/WeatherServices';
@@ -7,7 +7,7 @@ import { StyledResponsiveContainer } from './styled';
 
 
 
-export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cidade, unit, details }) {
+export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cidade, unit }) {
   const { mode } = useContext(ModeContext)
 
   useEffect(() => {
@@ -35,6 +35,7 @@ export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cida
         <YAxis
           yAxisId="right"
           orientation="right"
+          domain={[0, 30]}
           tickFormatter={(value) => `${value} mm`}
         />
         <Tooltip
@@ -60,7 +61,7 @@ export default function GraficoComponent({ lat, lon, nextDays, setNextDays, cida
         <Line yAxisId="left" type="monotone" dataKey="sensação" stroke={mode === "darkmode" ? "#8B008B" : "plum"} strokeWidth={3} name="Sensação térmica" dot={false} />
         <Line yAxisId="left" type="monotone" dataKey="temp" name="Temperatura" strokeWidth={2} stroke="black" />
 
-        <ReferenceLine yAxisId="right" y={10} stroke="red" label="Volume Perigoso de chuva" />
+        <ReferenceLine yAxisId="right" y={15} stroke="red" label="Volume Perigoso de chuva" />
       </ComposedChart>
     </StyledResponsiveContainer>
   )

@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react"
 import CatWithCoat from "../../assets/cat.webp"
 import DarkCatWithCoat from "../../assets/gato-casaco.png"
 import catTeste from "../../assets/cutecat.webp"
-
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import CardComponent from "../../components/cardComponent";
 import GraficoComponent from "../../components/graficoComponent";
@@ -10,7 +9,6 @@ import { fetchDataByCityName, fetchDataByLatAndLong, fetchSevenDaysData } from "
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { CurrentWeather, DadosDeHoje, DataEHora, Hoje, IconeEstilizado, LinhaDivisoria, StyledMain, TempAndImage, TemperatureAndWeather, WeatherDetails } from "./styled";
 import ModeContext from "../../contexts/modeContext";
-
 import 'animate.css';
 import DetailsHeader from "../../components/detailsHeader";
 import DetailsFooter from "../../components/detailsFooter";

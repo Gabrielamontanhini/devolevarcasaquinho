@@ -2,7 +2,6 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import MainPage from './pages/mainPage'
 import { colors } from './constants/colors/colors'
-import ModeProvider from './contexts/modeContext'
 import ModeContext from './contexts/modeContext'
 
 
